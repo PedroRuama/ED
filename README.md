@@ -126,65 +126,12 @@ void jogarRodada(int rodada, lista jogador1, lista jogador2, int vetorVitorias[]
 
 ```
 ### Distribuição de cartas aos jogadores
-> A função jogarRodada gerencia todo o processo de uma rodada
-> Exibe as cartas disponíveis para o jogador.
-> Permite que cada jogador escolha uma carta.
-> Calcula o vencedor da rodada e atualiza a contagem de vitórias.
-> Garante que cada jogador receba 5 cartas aleatórias. Usa topoPilha(&baralho) para pegar uma carta e retiraPilha(&baralho) para removê-la do baralho.
->  Estruturas de dados envolvidas:
-> - Pilha baralho → Representa o baralho e permite pegar cartas do topo.
-> - Lista j1 e j2 → Recebem as cartas distribuídas para os jogadores.
->   
-> No loop principal de rodadas:
->   - Lista j1 e j2 → Manipuladas dentro de jogarRodada.
->   - Vetor numVitorias[2] → Atualizado a cada rodada.
-```c
-void jogarRodada(int rodada, lista jogador1, lista jogador2, int vetorVitorias[]) {
-    int valorCartaJ1, valorCartaJ2;
-    printf("\n--- Rodada %d ---\n", rodada + 1);
-
-    for (int i = 0; i < 2; i++) {
-        printf("Jogador %d, sua mao: ", i + 1);
-        if (!i) mostrarMao(&jogador1, rodada);
-        else mostrarMao(&jogador2, rodada);
-        
-        if (rodada == 4) printf("Você so tem uma carta (1): ");
-        else printf("Escolha a carta (1 a %d): ", 5-rodada);
-        
-        int escolha;
-        scanf("%d", &escolha);
-
-        if (!i) {
-            valorCartaJ1 = calcularValor(retornarCartaDoIterador(posicaoNaLista(&jogador1, escolha-1)));
-            printf("O valor total de sua carta eh: %d\n", valorCartaJ1);
-            removerPosicao(&jogador1, escolha-1);
-        } else {
-            valorCartaJ2 = calcularValor(retornarCartaDoIterador(posicaoNaLista(&jogador2, escolha-1)));
-            printf("%d\n", valorCartaJ2);
-            removerPosicao(&jogador2, escolha-1);
-        }
-    }
-
-    if (valorCartaJ1 > valorCartaJ2) {
-        printf("O vencedor da rodada foi o Jogador 1!\n");
-        vetorVitorias[0]++;
-    }
-    else if (valorCartaJ1 < valorCartaJ2) {
-        printf("O vencedor da rodada foi o Jogador 2!\n");
-        vetorVitorias[1]++;
-    }
-    else printf("A rodada deu empate!\n");
-}
-
-```
-
-### Distribuição de cartas aos jogadores
-> A função jogarRodada gerencia todo o processo de uma rodada
-> Exibe as cartas disponíveis para o jogador.
-> Permite que cada jogador escolha uma carta.
-> Calcula o vencedor da rodada e atualiza a contagem de vitórias.
-> Garante que cada jogador receba 5 cartas aleatórias. Usa topoPilha(&baralho) para pegar uma carta e retiraPilha(&baralho) para removê-la do baralho.
->  Estruturas de dados envolvidas:
+> A função jogarRodada gerencia todo o processo de uma rodada  
+> Exibe as cartas disponíveis para o jogador.  
+> Permite que cada jogador escolha uma carta.  
+> Calcula o vencedor da rodada e atualiza a contagem de vitórias.  
+> Garante que cada jogador receba 5 cartas aleatórias. Usa topoPilha(&baralho) para pegar uma carta e retiraPilha(&baralho) para removê-la do baralho.  
+>  Estruturas de dados envolvidas:  
 > - Pilha baralho → Representa o baralho e permite pegar cartas do topo.
 > - Lista j1 e j2 → Recebem as cartas distribuídas para os jogadores.
 >   
